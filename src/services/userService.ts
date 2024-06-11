@@ -11,7 +11,7 @@ export const createUserService = async ({firstName, lastName, email, password} :
     const emailExists = await UserRepository.findByEmail(email);
 
     if (emailExists) {
-      throw new AppError('Email address already used.', 400);
+      throw new AppError('E-mail address already used.', 400);
     }
 
     const hashedPassword = await hash(password, 8);

@@ -5,3 +5,5 @@ const authRoutes = Router()
 authRoutes.post("/login", (request:Request, response: Response) => {
     
 })
+
+export default authRoutes;
