@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from "express"
-
+import cors from "cors"
 import { AppDataSource } from "./config/dataSource"
 import AppError from "./exceptions/AppError"
 import "reflect-metadata"
@@ -8,6 +8,7 @@ import routes from "./routes/routes"
 const PORT = 3000
 const app = express()
 app.use(express.json())
+app.use(cors({origin: true}))
 
 app.use("/api", routes)
 
