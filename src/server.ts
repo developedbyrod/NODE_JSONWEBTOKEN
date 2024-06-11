@@ -1,4 +1,4 @@
-import express from "express"
+import express, { NextFunction, Request, Response } from "express"
 
 import { AppDataSource } from "./config/dataSource"
 import AppError from "./exceptions/AppError"
@@ -11,6 +11,19 @@ app.use(express.json())
 
 app.use("/api", routes)
 
+app.use((error: Error, request: Request, response: Response, nextFn: NextFunction) => {
+  if(error instanceof AppError){
+    return response.status(error.httpStatusCode).json({
+      status: 'error',
+      message: error.message
+    })
+  }
+
+  return response.status(500).json({
+    status: 'error',
+    message: 'Internal Server Error'
+  })
+})
 
 AppDataSource.initialize()
   .then(() => {
