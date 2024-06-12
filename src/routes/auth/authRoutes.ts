@@ -1,9 +1,9 @@
-import Router, { Request, Response } from "express"
+import Router from "express"
+import { authLogin, authRegister } from "../../controllers/authController"
 
 const authRoutes = Router()
 
-authRoutes.post("/login", (request:Request, response: Response) => {
-    
-})
+authRoutes.post("/login", authLogin)
+authRoutes.post("/register", authRegister)
 
-export default authRoutes;
+export default authRoutes

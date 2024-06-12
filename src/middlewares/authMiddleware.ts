@@ -21,6 +21,7 @@ export default function authMiddlware(request: Request, response: Response, next
     if(!authHeader) throw new AppError("JWT Token is Missing or invalid.", 403)
     if(!secret) throw new AppError("Jwt is missing.", 403)
 
+        
     const [, token] = authHeader.split(" ")
 
     try{
